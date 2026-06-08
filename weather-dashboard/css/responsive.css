@@ -1,0 +1,206 @@
+/* ========================================
+   WEATHER DASHBOARD - RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .daily-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+    }
+
+    .logo h1 {
+        font-size: 20px;
+    }
+
+    .main-content {
+        padding: 20px 15px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .btn-search {
+        width: 100%;
+    }
+
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .weather-main {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .temp {
+        font-size: 48px;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px;
+    }
+
+    .daily-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hourly-card {
+        width: 100px;
+        padding: 12px;
+    }
+
+    .aqi-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .aqi-details {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .header {
+        padding: 15px 0;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo i {
+        font-size: 24px;
+    }
+
+    .logo h1 {
+        font-size: 16px;
+    }
+
+    .header-controls {
+        gap: 8px;
+    }
+
+    .btn-theme,
+    .btn-location {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 15px 10px;
+    }
+
+    .weather-card {
+        padding: 20px;
+    }
+
+    .forecast-section {
+        padding: 20px;
+    }
+
+    .weather-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .weather-header h2 {
+        font-size: 24px;
+    }
+
+    .btn-favorite {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .temp {
+        font-size: 40px;
+    }
+
+    .condition {
+        font-size: 18px;
+    }
+
+    .weather-icon-large img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .daily-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .daily-card {
+        padding: 15px;
+    }
+
+    .hourly-list {
+        gap: 10px;
+    }
+
+    .hourly-card {
+        width: 80px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .favorites-section,
+    .recent-section {
+        padding: 15px;
+    }
+
+    .unit-toggle {
+        display: flex;
+        width: 100%;
+    }
+
+    .search-suggestions {
+        width: calc(100% - 20px);
+    }
+
+    .footer {
+        padding: 20px 10px;
+    }
+}

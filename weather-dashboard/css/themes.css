@@ -1,0 +1,128 @@
+/* ========================================
+   WEATHER DASHBOARD - THEMES
+   ======================================== */
+
+/* Light Theme (Default) - Already defined in styles.css */
+
+/* Dark Mode Extensions */
+body.dark-mode {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .search-input {
+    background-color: var(--bg-primary);
+    border-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .search-input::placeholder {
+    color: var(--text-light);
+}
+
+body.dark-mode .search-suggestions {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .suggestion-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+body.dark-mode .weather-card {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .forecast-section {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .weather-details {
+    gap: 15px;
+}
+
+body.dark-mode .detail-item {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .daily-card,
+body.dark-mode .hourly-card {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .daily-card:hover,
+body.dark-mode .hourly-card:hover {
+    background-color: var(--bg-tertiary);
+}
+
+body.dark-mode .favorites-section,
+body.dark-mode .recent-section {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .favorite-item,
+body.dark-mode .recent-item {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .favorite-item:hover,
+body.dark-mode .recent-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+body.dark-mode .unit-toggle {
+    background-color: var(--bg-primary);
+}
+
+body.dark-mode .footer {
+    background-color: var(--bg-secondary);
+    border-top-color: var(--bg-tertiary);
+}
+
+/* Temperature Display Animation */
+@keyframes tempPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.temp.updating {
+    animation: tempPulse 0.6s ease-in-out;
+}
+
+/* Weather Icon Animation */
+@keyframes weatherFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.weather-icon-large img.floating {
+    animation: weatherFloat 3s ease-in-out infinite;
+}
+
+/* Card Shimmer Effect (Loading) */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.weather-card.loading {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 25%,
+        var(--bg-tertiary) 50%,
+        var(--bg-secondary) 75%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
