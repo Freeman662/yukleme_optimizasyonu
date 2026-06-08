@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard - Hava Durumu</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h1>Weather Dashboard</h1>
+                </div>
+                <div class="header-controls">
+                    <button class="btn-theme" id="themeToggle" title="Dark/Light Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-location" id="gpsBtn" title="GPS Konum">
+                        <i class="fas fa-location-dot"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Şehir adı girin... (örn: Istanbul, London, New York)"
+                        autocomplete="off"
+                    >
+                    <button class="btn-search" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </section>
+
+            <div class="dashboard-layout">
+                <!-- Left Sidebar -->
+                <aside class="sidebar">
+                    <!-- Temperature Unit Toggle -->
+                    <div class="unit-toggle">
+                        <button class="unit-btn active" data-unit="metric">°C</button>
+                        <button class="unit-btn" data-unit="imperial">°F</button>
+                    </div>
+
+                    <!-- Favorites -->
+                    <div class="favorites-section">
+                        <h3><i class="fas fa-star"></i> Favoriler</h3>
+                        <div class="favorites-list" id="favoritesList"></div>
+                    </div>
+
+                    <!-- Recent Searches -->
+                    <div class="recent-section">
+                        <h3><i class="fas fa-history"></i> Son Aramalar</h3>
+                        <div class="recent-list" id="recentList"></div>
+                    </div>
+                </aside>
+
+                <!-- Main Dashboard -->
+                <section class="dashboard">
+                    <!-- Loading State -->
+                    <div class="loading" id="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Hava durumu yükleniyor...</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p id="errorText"></p>
+                    </div>
+
+                    <!-- Current Weather Widget -->
+                    <div class="weather-card current-weather" id="currentWeather" style="display: none;">
+                        <div class="weather-header">
+                            <div>
+                                <h2 id="cityName"></h2>
+                                <p class="date-time" id="dateTime"></p>
+                            </div>
+                            <button class="btn-favorite" id="favoriteBtn" title="Favorilere Ekle">
+                                <i class="far fa-star"></i>
+                            </button>
+                        </div>
+
+                        <div class="weather-main">
+                            <div class="weather-icon-large">
+                                <img id="weatherIcon" src="" alt="Weather">
+                            </div>
+                            <div class="weather-temp">
+                                <div class="temp" id="temperature">--°</div>
+                                <div class="condition" id="weatherCondition">--</div>
+                            </div>
+                        </div>
+
+                        <div class="weather-details">
+                            <div class="detail-item">
+                                <span class="label"><i class="fas fa-droplet"></i> Nem</span>
+                                <span class="value" id="humidity">--%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label"><i class="fas fa-wind"></i> Rüzgar</span>
+                                <span class="value" id="windSpeed">-- m/s</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label"><i class="fas fa-gauge"></i> Basınç</span>
+                                <span class="value" id="pressure">-- hPa</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label"><i class="fas fa-eye"></i> Görüş</span>
+                                <span class="value" id="visibility">-- km</span>
+                            </div>
+                        </div>
+
+                        <div class="feels-like">
+                            <p>Hissedilen: <span id="feelsLike">--°</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Hourly Forecast -->
+                    <div class="forecast-section" id="hourlyForecast" style="display: none;">
+                        <h3><i class="fas fa-clock"></i> Saatlik Tahmin</h3>
+                        <div class="hourly-scroll">
+                            <div class="hourly-list" id="hourlyList"></div>
+                        </div>
+                    </div>
+
+                    <!-- 5-Day Forecast -->
+                    <div class="forecast-section" id="dailyForecast" style="display: none;">
+                        <h3><i class="fas fa-calendar"></i> 5 Günlük Tahmin</h3>
+                        <div class="daily-grid" id="dailyList"></div>
+                    </div>
+
+                    <!-- Air Quality -->
+                    <div class="air-quality-section" id="airQuality" style="display: none;">
+                        <h3><i class="fas fa-smog"></i> Hava Kalitesi</h3>
+                        <div class="aqi-card">
+                            <div class="aqi-value" id="aqiValue">--</div>
+                            <div class="aqi-label" id="aqiLabel">--</div>
+                            <div class="aqi-details">
+                                <p>PM2.5: <span id="pm25">--</span> μg/m³</p>
+                                <p>PM10: <span id="pm10">--</span> μg/m³</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Alerts -->
+                    <div class="alerts-section" id="alertsSection" style="display: none;">
+                        <h3><i class="fas fa-triangle-exclamation"></i> Hava Durumu Uyarıları</h3>
+                        <div class="alerts-list" id="alertsList"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Weather Dashboard | OpenWeatherMap API tarafından desteklenmektedir</p>
+            <p class="last-update">Son güncelleme: <span id="lastUpdate">--</span></p>
+        </footer>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/weather-api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
