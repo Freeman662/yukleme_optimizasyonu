@@ -5,7 +5,7 @@
 const CONFIG = {
     // API Configuration
     API: {
-        KEY: 'YOUR_API_KEY_HERE', // Get from https://openweathermap.org/api
+        KEY: '57fdd08bb1fdab618d53ebe53f765a3d', // API Key with access
         BASE_URL: 'https://api.openweathermap.org/data/2.5',
         GEO_URL: 'https://api.openweathermap.org/geo/1.0',
         
